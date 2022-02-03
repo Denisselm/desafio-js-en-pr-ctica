@@ -1,49 +1,49 @@
-//variables de mi codigo
-const formulario = document.getElementById("formulario");
-const nombre = document.getElementById("nombre");
-const asunto = document.getElementById("asunto");
-const mensaje = document.getElementById("mensaje");
+let myForm = document.getElementById('formulario');
+myForm = addEventListener('submit', formValidate);
 
-const errorNombre = document.querySelector("#Nombre");
-const errorAsunto = document.querySelector("#Asunto");
-const errorMensaje = document.querySelector("#Mensaje");
-const resultado = document.querySelector("#resultado");
+function formValidate() {
+    event.preventDefault()
+    cleanErrors();
 
-formulario.addEventListener("submit", (event) => {
-    event.preventDefault();
+    let formName = document.getElementById('nombre').value;
+    let formSubject = document.getElementById('asunto').value;
+    let formMessage = document.getElementById('mensaje').value;
 
-    //reset
+    let result = validate(formName, formSubject, formMessage);
 
-    errorNombre.innerHTML = ""
-
-
-    //expresion regular Espacios y solo letras
-    const regExpLetras = /^[a-zA-Z\ áéíóúÁÉÍÓÚñÑ\s]*$/;
-
-
-    //condiciones, en este caso si no se cumple la condicion la consola mostrará los mensajes entre las comillas
-
-    if (!nombre.value.trim()) {
-        errorNombre.innerHTML = "mensaje en blanco";
-
-        return;
+    if (result == true) {
+        formSuccess();
     }
-    if (!regExpLetras.test(nombre.value)) {
-        errorNombre.innerHTML = "solo se permiten letras"
-        console.log("El nombre es requerido");
-        return;
+}
 
-    }
-    if (!asunto.value.trim()) {
-        errorAsunto.innerHTML = "asunto es requerido";
-        console.log("El asunto es requerido");
-        return;
-    }
-    if (!mensaje.value.trim()) {
-        errorMensaje.innerHTML = "mensaje es requerido";
-        console.log("El mensaje es requerido");
-        return;
-    }
-    resultado.innerHTML = "El mensaje fue enviado con éxito"
+function formSuccess() {
+    document.querySelector('.resultado').innerHTML = "Mensaje enviado con éxito"
+}
 
-});
+function cleanErrors() {
+    document.querySelector('.resultado').innerHTML = "";
+    document.querySelector('.errorNombre').innerHTML = "";
+    document.querySelector('.errorAsunto').innerHTML = "";
+    document.querySelector('.errorMensaje').innerHTML = "";
+}
+
+function validate(formName, formSubject, formMessage) {
+    let success = true;
+
+    let validateName = /[a-zA-Z]/;
+    if (validateName.test(formName) == false) {
+        document.querySelector('.errorNombre').innerHTML = "El nombre es requerido.";
+    }
+
+    let validateSubject = /[a-zA-Z]/;
+    if (validateSubject.test(formSubject) == false) {
+        document.querySelector('.errorAsunto').innerHTML = "El asunto es requerido.";
+    }
+
+    let validateMessage = /[a-zA-Z]/;
+    if (validateMessage.test(formMessage) == false) {
+        document.querySelector('.errorMensaje').innerHTML = "Mensaje es requerido";
+    }
+
+    return success;
+}

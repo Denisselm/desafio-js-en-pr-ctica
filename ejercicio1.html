@@ -3,21 +3,49 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS en práctica</title>
+    <title>Ejercicio 1</title>
 </head>
 
 <body>
-    <form id="formulario">
-        <input id="nombre" autocomplete="off" placeholder=" Nombre Completo" type="text">
-        <input id="asunto" autocomplete="off" placeholder="Asunto" type="text">
-        <input id="mensaje" autocomplete="off" placeholder="Mensaje" type="text">
-
-        <button type="submit" id="btnEnviar">Enviar Mensaje</button>
-
-    </form>
-    <div id="resultado"></div>
+    <div>
+        <div style="width: 40%;margin: 0 auto">
+            <h2>
+                Escríbenos
+            </h2>
+            <div class="resultado" style="color:green;">
+            </div>
+            <form id="formulario">
+                <div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Nombre completo
+                        </label>
+                        <input id="nombre" type="text">
+                        <p class="errorNombre" style="color:red;"></p>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Asunto
+                        </label>
+                        <input id="asunto" type="text">
+                        <p class="errorAsunto" style="color:red;"></p>
+                    </div>
+                </div>
+                <div style="display: flex;flex-direction: column;">
+                    <label>
+                        Mensaje
+                    </label>
+                    <textarea id="mensaje"></textarea>
+                    <p class="errorMensaje" style="color:red;"></p>
+                </div>
+                <div>
+                    <button id="botton" type="submit">
+                        Envíar mensaje
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
     <script src="app1.js"></script>
 </body>
 
